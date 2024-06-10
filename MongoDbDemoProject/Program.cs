@@ -1,4 +1,17 @@
+using Microsoft.Extensions.Options;
+using MongoDbDemoProject.Services.CategoryServices;
+using MongoDbDemoProject.Settings;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<ICategoryService,CategoryService>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
+builder.Services.AddScoped<IDatabaseSettings>(sp =>
+{
+	return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

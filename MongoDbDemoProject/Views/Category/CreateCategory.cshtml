@@ -1,0 +1,16 @@
+﻿@model MongoDbDemoProject.Dtos.CategoryDtos.CreateCategoryDto
+@{
+    ViewData["Title"] = "CreateCategory";
+}
+
+<h1>Yeni Kategori Ekleme</h1>
+
+<div class="container">
+    <form method="post">
+        <div class="alert alert-info">Yeni Kategori Ekleme</div>
+        <label>Kategori Adı</label>
+        <input asp-for="Name" class="form-control"/>
+        <br />
+        <button class="btn btn-dark">Kategori Ekle</button>
+    </form>
+</div>
